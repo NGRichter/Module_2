@@ -3,8 +3,10 @@ package com.connected3d.test;
 import java.util.Scanner;
 
 public class Main {
+		
+	static Scanner scan = new Scanner(System.in);
+	public static void main(String[] args) {		
 
-	public static void main(String[] args) {
 		runcode();
 
 	}
@@ -18,16 +20,23 @@ public class Main {
 		System.out.println("C equals " + c);
 		a = a * a;
 		System.out.println("And A squared equals " + a);
+		System.out.println(askString("Say something that will be said by the console: "));
+		System.out.println(askString("Say something that will be said by the console: "));
 	}
 	public static int askInteger(String str) {
-		Scanner scan = new Scanner(System.in);
-		System.out.println(str);
+		System.out.print(str);
 		while (!scan.hasNextInt()) {
-			System.out.print("Please enter an interger: ");			
+			System.out.print("Please enter an integer: ");			
 			scan.next();
 		}	
-		int input = scan.nextInt();
-		return input;
+		int iinput = scan.nextInt();
+		scan.nextLine();
+		return iinput;
+	}
+	public static String askString(String str) {
+		System.out.print(str);
+		String sinput = scan.nextLine();
+		return sinput;
 	}
 
 }
