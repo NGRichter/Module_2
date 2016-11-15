@@ -22,7 +22,6 @@ public class Main {
 		System.out.println("And A squared equals " + a);
 		System.out.println(askString("Say something that will be said by the console: "));
 		System.out.println(askString("Say something that will be said by the console: "));
-		//Test
 	}
 	public static int askInteger(String str) {
 		System.out.print(str);
