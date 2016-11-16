@@ -1,42 +1,24 @@
 package ss.week1.test;
 
+import org.junit.Before;
+import org.junit.Test;
+import static org.junit.Assert.assertEquals;
 
 /**
  * Testprogram for Dollars and Cents Counter.
  * Lab Exercise SoftwareSystems
- * //author Jip Spel
- * //version $Revision: 1.0 $
+ * @author Jip Spel
+ * @version $Revision: 1.0 $
  */
 public class DollarsAndCentsCounterTest {
     /** Testvariabele for a <tt>DollarsAndCentsCounter</tt> object. */
-    private static DollarsAndCentsCounter counter;
-    private static boolean worked = true;
+    private DollarsAndCentsCounter counter;
 
     /**
      * Sets the instance variable <tt>counter</tt> to a well-defined initial value.
      */
-    //Before
-    public static void main(String[] args) {
-    	
-    	setUp();
-    	workedFine();
-    	testDollars();
-    	workedFine();
-    	testReset();
-    	workedFine();
-    	testCents();
-    	workedFine();
-    	testReset();
-    	workedFine();
-    	testAdd();
-    	workedFine();
-    	testReset();
-    	testSubtract();
-    	workedFine();
-    	
-    	
-    }
-    public static void setUp() {
+    @Before
+    public void setUp() {
         counter = new DollarsAndCentsCounter();
         counter.reset();
     }
@@ -44,8 +26,8 @@ public class DollarsAndCentsCounterTest {
     /**
      * Test the method <tt>dollars()</tt>
      */
-    //Test
-    public static void testDollars() {
+    @Test
+    public void testDollars() {
         counter.add(5, 0);
         assertEquals(5, counter.dollars());
         counter.add(0, 100);
@@ -55,8 +37,8 @@ public class DollarsAndCentsCounterTest {
     /**
      * Test the method <tt>cents()</tt>
      */
-    //Test
-    public static void testCents() {
+    @Test
+    public void testCents() {
         counter.add(0, 5);
         assertEquals(5, counter.cents());
         counter.add(0, 95);
@@ -66,8 +48,8 @@ public class DollarsAndCentsCounterTest {
     /**
      * Test the method <tt>add(dollars, cents)</tt>
      */
-    //Test
-    public static void testAdd() {
+    @Test
+    public void testAdd() {
         counter.add(0, 10);
         assertEquals(0, counter.dollars());
         assertEquals(10, counter.cents());
@@ -75,42 +57,16 @@ public class DollarsAndCentsCounterTest {
         assertEquals(3, counter.dollars());
         assertEquals(5, counter.cents());
     }
-    
-    public static void testSubtract() {
-        counter.add(10, 10);
-        assertEquals(10, counter.dollars());
-        assertEquals(10, counter.cents());
-        counter.subtract(2, 15);
-        assertEquals(7, counter.dollars());
-        assertEquals(95, counter.cents());    	
-    }
 
     /**
      * Test the method <tt>reset()</tt>
      */
-    //Test
-    public static void testReset() {
+    @Test
+    public void testReset() {
         counter.add(22, 33);
 
         counter.reset();
         assertEquals(0, counter.dollars());
         assertEquals(0, counter.cents());
-    }
-    
-    public static void assertEquals(int a, int b) {
-    	if (a == b) {
-    		int c = a;
-    	} else {
-    		worked = false;
-    	}
-    }
-    
-    public static void workedFine() {
-    	if (worked) {
-    		System.out.println("Worked fine");   		
-    	} else {
-    		System.out.println("Didn't work");
-    	}
-
     }
 }
