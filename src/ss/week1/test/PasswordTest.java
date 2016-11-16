@@ -43,7 +43,7 @@ public class PasswordTest {
     @Test
 	public void testTestWord() {
 		assertFalse(pass.testWord("wrong"));
-		assertTrue(pass.testWord(new String(Password.INITIAL)));
+		assertTrue(pass.testWord(Password.INITIAL));
 	}
 
 	/**

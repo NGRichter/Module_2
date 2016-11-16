@@ -51,4 +51,12 @@ public class Room {
     public void setGuest(Guest g) {
     	guest = g;
     }
+    
+    public String toString() {
+    	if (guest != null) {
+    		return "Room: " + number + "\nGuest: " + guest.getName();
+    	} else {
+    		return "Room: " + number;
+    	}
+    }
 }

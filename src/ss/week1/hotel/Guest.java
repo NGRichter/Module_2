@@ -17,7 +17,13 @@ public class Guest {
      * Creates a <code>Guest</code> with a given name, without a room.
      * @param guest string of the new <code>Guest</code>
      */
-	
+	public static void main(String[] args) {
+		Guest guest = new Guest("John");
+		Room k101 = new Room(101);
+		guest.checkin(k101);
+		System.out.println(guest.toString());
+		System.out.println(k101.toString());
+	}
 	public Guest(String guest) {
 		this.guest = guest;
 	}
@@ -73,7 +79,8 @@ public class Guest {
 	 */
 	public String toString() {
 		if (room != null) {
-			return "Name of guest: " + guest + "/nRoom of the customer: " + room;			
+			return "Name of guest: " + guest + "\nRoom of the guest: " 
+					+ room.getNumber();			
 		} else {
 			return "Name of guest: " + guest;
 		}

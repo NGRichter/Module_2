@@ -10,19 +10,19 @@ import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.assertFalse;
 
 /**
- * Testprogram for Room and Guest.
+ * Test program for Room and Guest.
  * Lab Exercise SoftwareSystems
  * @author Arend Rensink, Jip Spel
  * @version $Revision: 1.2 $
  */
 public class GuestTest {
-    /** Testvariabele for a <tt>Guest</tt>-object. */
+    /** Test variable for a <tt>Guest</tt>-object. */
     private Guest ot;
-    /** Testvariabele for a <tt>Guest</tt>-object. */
+    /** Test variable for a <tt>Guest</tt>-object. */
     private Guest sien;
-    /** Testvariabele for a <tt>Room</tt>-object. */
+    /** Test variable for a <tt>Room</tt>-object. */
     private Room k101;
-    /** Testvariabele for a <tt>Room</tt>-object. */
+    /** Test variable for a <tt>Room</tt>-object. */
     private Room k102;
 
     /**
@@ -97,6 +97,13 @@ public class GuestTest {
      */
     @Test
     public void testCheckoutUnknown() {
+        assertEquals(null, ot.getRoom());
+        assertFalse(ot.checkout());
+        assertEquals(null, ot.getRoom());
+    }
+    
+    @Test
+    public void testToString() {
         assertEquals(null, ot.getRoom());
         assertFalse(ot.checkout());
         assertEquals(null, ot.getRoom());
