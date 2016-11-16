@@ -30,7 +30,9 @@ public class DollarsAndCentsCounterTest {
     	workedFine();
     	testAdd();
     	workedFine();
-    	
+    	testReset();
+    	testSubtract();
+    	workedFine();
     	
     	
     }
@@ -72,6 +74,15 @@ public class DollarsAndCentsCounterTest {
         counter.add(2, 95);
         assertEquals(3, counter.dollars());
         assertEquals(5, counter.cents());
+    }
+    
+    public static void testSubtract() {
+        counter.add(10, 10);
+        assertEquals(10, counter.dollars());
+        assertEquals(10, counter.cents());
+        counter.subtract(2, 15);
+        assertEquals(7, counter.dollars());
+        assertEquals(95, counter.cents());    	
     }
 
     /**
