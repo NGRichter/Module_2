@@ -18,8 +18,7 @@ public class Main {
 		int b = askInteger("B = ");
 		int c = a + b;
 		System.out.println("C equals " + c);
-		a = a * a;
-		System.out.println("And A squared equals " + a);
+		System.out.println("And A squared equals " + (a * a));
 		System.out.println(askString("Say something that will be said by the console: "));
 		System.out.println(askString("Say something that will be said by the console: "));
 	}
