@@ -1,0 +1,6 @@
+1.3 
+The declared package "ss.week2" does not match the expected package "ss.week1"
+';' expected
+Syntax error, insert ";" to complete BlackStatements
+
+1.4
