@@ -44,6 +44,7 @@ public class Guest {
 	public boolean checkout() {
 		if (room != null) {
 			room.setGuest(null);
+			room.getSafe().deactivate();
 			room = null;
 			return true;
 		} else {

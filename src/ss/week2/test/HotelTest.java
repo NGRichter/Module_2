@@ -10,8 +10,8 @@ import static org.junit.Assert.*;
 public class HotelTest {
     /** Test variable for a <tt>Hotel</tt> object. */
     private Hotel hotel;
-    private String correctPassword;
-    private String wrongPassword;
+    private Password correctPassword;
+    private Password wrongPassword;
     public static final String GUEST_NAME_1 = "Major Gowen";
     public static final String GUEST_NAME_2 = "Miss Tibbs";
     public static final String GUEST_NAME_3 = "Miss Gatsby";
@@ -23,10 +23,11 @@ public class HotelTest {
     @Before
     public void setUp() {
         hotel = new Hotel("Fawlty Towers");
+        hotel.addRoom(101);
+        hotel.addRoom(102);
 
         // initialisation of password-variable
-        correctPassword = Password.INITIAL;
-        wrongPassword = Password.INITIAL + "_invalid";
+        correctPassword = hotel.getPassword();
     }
 
     /**
