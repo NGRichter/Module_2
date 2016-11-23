@@ -8,8 +8,6 @@ import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
 
-import ss.week2.hotel.Safe;
-
 public class SafeTest {
 	private Safe safe;
 	@Before

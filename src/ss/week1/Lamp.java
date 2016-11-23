@@ -6,6 +6,7 @@ public class Lamp {
 	}
 	
 	public int getLightLevel() {
+		return 0;
 	}
 	
 	public void setLightLevel(int level) {

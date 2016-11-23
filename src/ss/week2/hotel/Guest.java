@@ -69,7 +69,7 @@ public class Guest {
 		return room;
 	}
 	/**
-	 * Returns a string with the variables
+	 * Returns a string with the variables.
 	 * @return a string with variables of the object;
 	 */
 	public String toString() {

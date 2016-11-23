@@ -26,9 +26,9 @@ public class DollarsAndCentsCounter {
 		}
 	}
 	
-	public void add(int dollars, int cents) {
-		this.dollars += dollars;
-		this.cents += cents;
+	public void add(int dollar, int cent) {
+		this.dollars += dollar;
+		this.cents += cent;
 		while (this.cents >= 100) {
 			this.dollars += 1;
 			this.cents += -100;
@@ -39,9 +39,9 @@ public class DollarsAndCentsCounter {
 		this.cents = 0;
 	}
 	
-	public void subtract(int dollars, int cents) {
-		this.dollars -= dollars;
-		this.cents -= cents;
+	public void subtract(int dollar, int cent) {
+		this.dollars -= dollar;
+		this.cents -= cent;
 		while (this.cents < 0) {
 			this.dollars -= 1;
 			this.cents += 100;

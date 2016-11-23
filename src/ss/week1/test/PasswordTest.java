@@ -26,7 +26,7 @@ public class PasswordTest {
 		pass = new Password();
 	}
 
-	/**
+	/**.
 	 * Test the method <tt>acceptable(suggestion)</tt>
 	 */
     @Test
@@ -37,7 +37,7 @@ public class PasswordTest {
 		assertTrue(pass.acceptable("yesyesyes"));
 	}
 
-    /**
+    /**.
 	 * Test the method <tt>testWord</tt>
 	 */
     @Test
