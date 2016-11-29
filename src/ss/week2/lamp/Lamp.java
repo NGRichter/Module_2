@@ -15,7 +15,7 @@ public class Lamp {
 	public void setLightLevel(int level) {
 		setting = level % 4;
 	}
-	//@ensures setting == ThreeWayLamp.OFF ==> setting == ThreeWayLamp.LOW;
+	//@ensures \old(setting == ThreeWayLamp.OFF) ==> setting == ThreeWayLamp.LOW;
 	//@ensures setting == ThreeWayLamp.LOW ==> setting == ThreeWayLamp.MEDIUM;
 	//@ensures setting == ThreeWayLamp.MEDIUM ==> setting == ThreeWayLamp.HIGH;
 	//@ensures setting == ThreeWayLamp.HIGH ==> setting == ThreeWayLamp.OFF;

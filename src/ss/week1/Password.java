@@ -9,7 +9,7 @@ public class Password {
 	}
 	
 	public boolean setWord(String oldpass, String newpass) {
-		if (oldpass == password) {
+		if (oldpass.equals(password)) {
 			if (acceptable(newpass)) {
 				password = newpass;			
 				return true;
@@ -23,7 +23,7 @@ public class Password {
 	}
 	
 	public boolean testWord(String test) {
-		if (test == password) {
+		if (test.equals(password)) {
 			return true;
 		} else {
 			return false;
