@@ -3,6 +3,12 @@ package ss.week3.pw;
 import java.util.Random;
 
 public class BasicChecker implements Checker {
+	
+	public static final String INITPASS = "Bitgroup105";
+	
+	public BasicChecker() {
+	}
+	
 	@Override
 	public boolean acceptable(String word) {
 		if (word.length() >= 6) {

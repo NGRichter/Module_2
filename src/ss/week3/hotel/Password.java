@@ -5,22 +5,26 @@ import ss.week3.pw.*;
 public class Password {
 	public static final String INITIAL = "administrator";
 	private String password;
-	private Checker checker;
-	private String factoryPassword;
+	private static Checker checker = new BasicChecker();
+	private Checker bchecker;
+	public String factoryPassword;
+		
+
+	public Password(Checker check) {
+		this.bchecker = check;
+		this.factoryPassword = BasicChecker.INITPASS;
+	}
 	
 	public Password() {
-		checker = new BasicChecker();
-		this.(checker);
+		this(checker);		
+
+
 	}
-	
-	public Password(Checker check) {
 		
-	}
-	
 	public boolean setWord(String oldpass, String newpass) {
-		if (oldpass == password) {
+		if (oldpass.equals(factoryPassword)) {
 			if (acceptable(newpass)) {
-				password = newpass;			
+				factoryPassword = newpass;			
 				return true;
 			} else {
 				return false;
@@ -32,7 +36,7 @@ public class Password {
 	}
 	
 	public boolean testWord(String test) {
-		if (test == password) {
+		if (test.equals(factoryPassword)) {
 			return true;
 		} else {
 			return false;

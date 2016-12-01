@@ -2,7 +2,7 @@ package ss.week3.test;
 
 import org.junit.Test;
 import ss.week3.pw.BasicChecker;
-import ss.week3.pw.TimedPassword;
+import ss.week3.hotel.TimedPassword;
 
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
@@ -23,7 +23,8 @@ public class TimedPasswordTest {
         // Change the password
         tp.setWord(BasicChecker.INITPASS, "test123");
         // Assert that it is valid.
-        assertFalse("The password should be valid after changing it and it should not yet have expired.",
+        assertFalse("The password should be valid after changing it "
+        		+ "and it should not yet have expired.",
                 tp.isExpired());
     }
 }
