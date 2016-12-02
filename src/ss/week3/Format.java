@@ -11,7 +11,7 @@ public class Format {
 		System.out.println(printLine("Test", b));
 	}
 	public static String printLine(String text, double amount) {
-		String print = String.format("%-20s %10.2f", text, amount);
+		String print = String.format("%-20s %10.2f€", text, amount);
 		return print;
 	}
 }

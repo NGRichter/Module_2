@@ -3,31 +3,31 @@ package ss.week3.hotel;
 import java.util.ArrayList;
 
 public class Hotel {
-	public static ArrayList<Room> rooms;
+	public static ArrayList<PricedRoom> rooms;
 	public static ArrayList<Guest> guests;
 	public final Password pass;
 	public String names;
 	
 	public static void main(String[] arg) {
 		Hotel hotel = new Hotel("hotel");
-		hotel.addRoom(102);
-		hotel.addRoom(100);
+		hotel.addRoom(102, 120, 50);
+		hotel.addRoom(100, 50, 5);
 		
 		hotel.addGuest("Lars");
 		hotel.addGuest("Lars2");
 		hotel.addGuest("Lars3");
 
-		for (Room room : rooms) {
+		for (PricedRoom room : rooms) {
 			System.out.println(room.getNumber());
 		}
 		for (Guest guest : guests) {
 			System.out.println(guest.getName());
 		}
-		hotel.addRoom(101);
-		for (Room room : rooms) {
+		hotel.addRoom(101, 100, 20);
+		for (PricedRoom room : rooms) {
 			System.out.println(room.getNumber());
 		}
-		hotel.checkIn(hotel.getPassword(), "Nick");
+		hotel.checkIn(hotel.getPassword(), "Nick", 10);
 		System.out.println(hotel.toString());
 		if (hotel.getRoom("Nick2") == null) {
 			System.out.println("Nick2 does not have a room");
@@ -38,6 +38,8 @@ public class Hotel {
 		for (Guest guest : guests) {
 			System.out.println(guest.getName());
 		}
+		hotel.getBill("Nick").close();
+		
 	}
 	/**
 	 * Makes an hotel with no rooms or guests.
@@ -45,27 +47,42 @@ public class Hotel {
 	 */
 	public Hotel(String names) {
 		this.names = names;
-		rooms = new ArrayList<Room>();
+		rooms = new ArrayList<PricedRoom>();
 		guests = new ArrayList<Guest>();
 		pass = new Password();
 		pass.setWord(Password.INITIAL, "Bitgroup105");
 	}
+	
+	public Bill getBill(String name) {
+		Bill bill = new Bill(System.out);
+		for (Guest gexits : guests) {
+			if (gexits.getName().equals(name)) {
+				Bill.Item room = new PricedRoom((gexits.getRoom().getNumber()), 
+						(gexits.getRoom().getAmount()), 
+						gexits.getRoom().getSafe().getAmount());
+				bill.newItem(room);
+				
+			}
+		}
+		return bill;
+	}
+	
 	/**
 	 * Add a room to the hotel.
-	 * @param Roomnumber
+	 * @param Roomnumber, price, safeprice
 	 */
-	public void addRoom(int number) {
-		for (Room exist : rooms) {
+	public void addRoom(int number, double price, double safeprice) {
+		for (PricedRoom exist : rooms) {
 			if (exist.getNumber() == number) {
 				return;
 			}
 		}
-		Room room = new Room(number);
+		PricedRoom room = new PricedRoom(number, price, safeprice);
 		if (rooms.size() == 0) {
 			rooms.add(room);
 		} else {
 			int i = 0;
-			for (Room exist : rooms) {
+			for (PricedRoom exist : rooms) {
 				if (exist.getNumber() > room.getNumber()) {
 					rooms.add(i, room);
 					return;
@@ -107,19 +124,19 @@ public class Hotel {
 	 * @param Guest name
 	 * @return The room the guest is renting
 	 */
-	public Room checkIn(Password pw, String guest) {
+	public PricedRoom checkIn(Password pw, String guest, int nights) {
 		for (Guest existg : guests) {
 			if (existg.getName().equals(guest)) {
 				return null;
 			}
 		}
-		Room freeroom = getFreeRoom();
+		PricedRoom freeroom = getFreeRoom();
 		if (freeroom != null) {
 			if (pw == pass) {
 				addGuest(guest);
 				for (Guest existg : guests) {
 					if (existg.getName().equals(guest)) {
-						if (existg.checkin(freeroom)) {
+						if (existg.checkin(freeroom, nights)) {
 							return freeroom;
 						}
 					}
@@ -150,8 +167,8 @@ public class Hotel {
 	 * @return a free room
 	 * @return if no free room returns null
 	 */
-	public Room getFreeRoom() {
-		for (Room room : rooms) {
+	public PricedRoom getFreeRoom() {
+		for (PricedRoom room : rooms) {
 			if (room.getGuest() == null) { 
 				return room;				
 			} 
@@ -164,8 +181,8 @@ public class Hotel {
 	 * @return room of guest
 	 * @return if no guest with that name exist return null
 	 */
-	public Room getRoom(String name) {
-		for (Room room : rooms) {
+	public PricedRoom getRoom(String name) {
+		for (PricedRoom room : rooms) {
 			if (room.getGuest() != null) {
 				if (room.getGuest().getName().equals(name)) {
 					return room;					
@@ -187,8 +204,8 @@ public class Hotel {
 	 */
 	public String toString() {
 		String all = "The hotel consists of: ";
-		for (Room existr : rooms) {
-			all += "\nRoom " + existr.getNumber();
+		for (PricedRoom existr : rooms) {
+			all += "\n Room " + existr.getNumber();
 			if (existr.getGuest() != null) {
 				all += " with guest " + existr.getGuest().getName();				
 			}

@@ -10,7 +10,7 @@ public class Room {
 
     private int number;
     private Guest guest;
-    private Safe safe;
+    private PricedSafe safe;
 
     // ------------------ Constructor ------------------------
 
@@ -20,12 +20,17 @@ public class Room {
      */
     public Room(int no) {
     	number = no;
-    	safe = new Safe();
+    	safe = new PricedSafe(20);
+    }
+    
+    public Room(int no, PricedSafe safe) {
+    	number = no;
+    	this.safe = safe;
     }
 
     // ------------------ Queries --------------------------
 
-    public Safe getSafe() {
+    public PricedSafe getSafe() {
     	return safe;
     }
     /**

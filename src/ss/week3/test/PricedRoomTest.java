@@ -26,6 +26,8 @@ public class PricedRoomTest {
 
     @Test
     public void testToString() throws Exception {
-        assertTrue("The price per night should be included.", item.toString().matches(PRICE_PATTERN));
+    	System.out.println(item.toString());
+        assertTrue("The price per night should be included.", 
+        		item.toString().matches(PRICE_PATTERN));
     }
 }

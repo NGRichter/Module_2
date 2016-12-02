@@ -9,7 +9,8 @@ package ss.week3.hotel;
 public class Guest {
     // ------------------ Instance variables ----------------
 	private String guest;
-	private Room room;
+	private PricedRoom room;
+	private int nights;
 
     // ------------------ Constructor ------------------------
 
@@ -27,14 +28,19 @@ public class Guest {
      * Checks the <code>Guest</code> into the room.
      * @param the room the <code>Guest</code> is renting.
      */	
-	public boolean checkin(Room r) {
+	public boolean checkin(PricedRoom r, int night) {
 		if (r.getGuest() == null && (room == null)) {
 			r.setGuest(this);
 			room = r;
+			this.nights = night;
 			return true;
 		} else {
 			return false;
 		}
+	}
+	
+	public int getNights() {
+		return nights;
 	}
     /**
      * Checks the <code>Guest</code> out of the room.
@@ -65,7 +71,7 @@ public class Guest {
      *         <code>null</code> if this <code>Guest</code> 
      *         is not currently checked in
      */		
-	public Room getRoom() {
+	public PricedRoom getRoom() {
 		return room;
 	}
 	/**
