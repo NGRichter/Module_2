@@ -28,13 +28,13 @@ public class BillTest {
 	public void priceIsRight() {
 		assertEquals("Cookie should be 1.99", item1.getAmount(), 1.99, 0);
 		assertEquals("Milk should be 2.99", item2.getAmount(), 2.99, 0);
-		assertEquals("Chocolate should be 6.00", item3.getAmount(), 666.00, 0);
+		assertEquals("Chocolate should be 666.00", item3.getAmount(), 666.00, 0);
 		
 	}	
 	
 	@Test
 	public void addToBill() {
-		assertEquals("Total should be 10.98", bill.getSum(), 670.98, 0);	
+		assertEquals("Total should be 670.98", bill.getSum(), 670.98, 0);	
 	}
 	
 	@Test

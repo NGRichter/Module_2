@@ -24,6 +24,7 @@ public class StrongChecker extends BasicChecker {
 				if (e == ' ') {
 					return false;
 				}
+				i++;
 			}
 		}
 		return true;
@@ -34,7 +35,7 @@ public class StrongChecker extends BasicChecker {
 		Random rand = new Random();
 		int i = rand.nextInt(14) + 6;
 		char[] passwords = new char[21];
-		for (int o = 1; o < i; i++) {
+		for (int o = 1; o < i; o++) {
 			int n = rand.nextInt(62);
 			if (n >= 0 && n <= 25) {
 				passwords[o] = (char) (65 + n);

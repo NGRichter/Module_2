@@ -15,11 +15,11 @@ public class PricedRoom extends Room implements Bill.Item {
 
 	@Override
 	public double getAmount() {
-		return price;
+		return price + safeprice;
 	}
 	
 	@Override
 	public String toString() {
-		return "Room " + getNumber() + " Price " + price + "€";
+		return "Room " + getNumber();
 	}
 }

@@ -55,13 +55,14 @@ public class Hotel {
 	
 	public Bill getBill(String name) {
 		Bill bill = new Bill(System.out);
-		for (Guest gexits : guests) {
-			if (gexits.getName().equals(name)) {
-				Bill.Item room = new PricedRoom((gexits.getRoom().getNumber()), 
-						(gexits.getRoom().getAmount()), 
-						gexits.getRoom().getSafe().getAmount());
-				bill.newItem(room);
-				
+		for (Guest gexists : guests) {
+			if (gexists.getName().equals(name)) {
+				for (int i = 1; i <= gexists.getNights(); i++) {
+					Bill.Item room = new PricedRoom(gexists.getRoom().getNumber(), 
+							gexists.getRoom().getAmount(), 
+							gexists.getRoom().getSafe().getAmount());
+					bill.newItem(room);
+				}
 			}
 		}
 		return bill;

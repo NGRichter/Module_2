@@ -6,6 +6,13 @@ public class BasicChecker implements Checker {
 	
 	public static final String INITPASS = "Bitgroup105";
 	
+	public static void main(String[] args) {
+		BasicChecker checker = new BasicChecker();
+		System.out.println(checker.generatePassword());
+		StrongChecker schecker = new StrongChecker();
+		System.out.println(schecker.generatePassword());
+	}
+	
 	public BasicChecker() {
 	}
 	
@@ -26,7 +33,7 @@ public class BasicChecker implements Checker {
 		Random rand = new Random();
 		int i = rand.nextInt(14) + 6;
 		char[] passwords = new char[21];
-		for (int o = 0; o <= i; i++) {
+		for (int o = 0; o <= i; o++) {
 			int n = rand.nextInt(62);
 			if (n >= 0 && n <= 25) {
 				passwords[o] = (char) (65 + n);
