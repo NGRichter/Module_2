@@ -2,11 +2,22 @@ package ss.week4;
 
 public class Exercises {
     public static int countNegativeNumbers(int[] arr) {
-        // TODO: implement, see exercise P-4.1
+        int o = 0;
+    	for (int i : arr) {
+        	if (i < 0) {
+        		o++;
+        	}
+        }
+    	return o;
     }
 
     public static void reverseArray(int[] ints) {
-        // TODO: implement, see exercise P-4.2
+        for (int i = 0; i < (ints.length / 2); i++) {
+        	int o = 0;
+        	o = ints[i];
+        	ints[i] = ints[ints.length - 1 - i];
+        	ints[ints.length - 1 - i] = o;
+        }
     }
 
     class SimpleList {
