@@ -18,14 +18,7 @@ public class BasicChecker implements Checker {
 	
 	@Override
 	public boolean acceptable(String word) {
-		if (word.length() >= 6) {
-			for (char e : word.toCharArray()) {
-				if (e == ' ') {
-					return false;
-				}
-			}
-		}
-		return true;
+		return !word.contains(" ") && word.length() >= 6;
 	}
 	
 	@Override

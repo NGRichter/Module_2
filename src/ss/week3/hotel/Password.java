@@ -22,37 +22,19 @@ public class Password {
 	}
 		
 	public boolean setWord(String oldpass, String newpass) {
-		if (oldpass.equals(factoryPassword)) {
-			if (acceptable(newpass)) {
-				factoryPassword = newpass;			
-				return true;
-			} else {
-				return false;
-			}
-
+		if (oldpass.equals(factoryPassword) && acceptable(newpass)) {
+			factoryPassword = newpass;			
+			return true;
 		} else {
 			return false;
 		}
 	}
 	
 	public boolean testWord(String test) {
-		if (test.equals(factoryPassword)) {
-			return true;
-		} else {
-			return false;
-		}
+		return test.equals(factoryPassword);
 	}
 	
 	public boolean acceptable(String suggestion) {
-		if (suggestion.length() >= 6) {
-			for (char c : suggestion.toCharArray()) {
-				if (c == ' ') {
-					return false;
-				}
-			}
-			return true;
-		} else {
-			return false;
-		}
+		return checker.acceptable(suggestion);
 	}
 }

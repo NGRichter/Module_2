@@ -26,15 +26,9 @@ public class TimedPassword extends Password {
 	}
 	@Override
 	public boolean setWord(String oldpass, String newpass) {
-		if (oldpass.equals(factoryPassword)) {
-			if (acceptable(newpass)) {
-				factoryPassword = newpass;			
+		if (super.setWord(oldpass, newpass)) {
 				reset();
 				return true;
-			} else {
-				return false;
-			}
-
 		} else {
 			return false;
 		}

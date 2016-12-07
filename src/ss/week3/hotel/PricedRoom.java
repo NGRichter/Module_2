@@ -20,6 +20,6 @@ public class PricedRoom extends Room implements Bill.Item {
 	
 	@Override
 	public String toString() {
-		return "Room " + getNumber();
+		return "Room " + getNumber() + price;
 	}
 }

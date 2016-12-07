@@ -7,7 +7,7 @@ public class Format {
 		double a = 205.1;
 		double b = 0;
 		System.out.println(printLine("Safe", safe));
-		System.out.println(printLine("Abracafuckyou", a));
+		System.out.println(printLine("abcu", a));
 		System.out.println(printLine("Test", b));
 	}
 	public static String printLine(String text, double amount) {
