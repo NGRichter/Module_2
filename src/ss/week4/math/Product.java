@@ -12,13 +12,11 @@ public class Product implements Function {
 	
 	@Override
 	public double apply(double d) {
-		// TODO Auto-generated method stub
 		return a.apply(d) * b.apply(d);
 	}
 
 	@Override
 	public Function derivative() {
-		// TODO Auto-generated method stub
 		return new Sum(new Product(a.derivative(), b), new Product(a, b.derivative()));
 	}
 

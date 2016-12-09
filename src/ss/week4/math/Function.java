@@ -6,4 +6,5 @@ public interface Function {
 	public Function derivative();
 	
 	public String toString();
+
 }

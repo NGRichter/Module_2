@@ -1,20 +1,20 @@
 package ss.week4.math;
 
-public class Polynomial implements Function {
+public class Polynomial implements Function, Integrandable {
 	
 	public double[] a;
 	public LinearProduct[] array;
 	
 	public Polynomial(double[] a) {
 		this.a = a;
-		array = new LinearProduct[a.length - 1];
+		array = new LinearProduct[a.length];
 		int i = 0;
 		for (double b : a) {
 			array[i] = new LinearProduct(new Exponent(a.length - 1 - i), new Constant(b));
 			i++;
 		}
 	}
-
+	
 	@Override
 	public double apply(double d) {
 		double y = 0;
@@ -26,16 +26,39 @@ public class Polynomial implements Function {
 
 	@Override
 	public Function derivative() {
-		Sum temp;
-		Sum perm;
-		int o = 0;
-		for (int i = 0; i < array.length / 2; i = i + 2) {
-			temp = new Sum(array[i], array[i + 1]);
-			perm = new Sum(temp, array[array.length - 1 - o]);
-			o++;
+		Function cont = new Constant(0);
+		int e = 0;
+		for (int i = a.length - 2; i >= 0; i--) {
+			double d = a[i];
+			Function temp = new LinearProduct(new LinearProduct(new Exponent(e), new Constant(d)), 
+					new Constant(e + 1));
+			cont = new Sum(temp, cont);
+			e++;
 		}
 		
-		return null;
+		return cont;
+	}
+
+	@Override
+	public Function integrand() {
+		Function cont = new Constant(0);
+		int e = 1;
+		for (int i = a.length - 1; i >= 0; i--) {
+			double d = a[i];
+			Function temp = new LinearProduct(new LinearProduct(new Exponent(e), 
+					new Constant((double) 1 / e)), new Constant(d));
+			cont = new Sum(temp, cont);
+			e++;
+		}
+		return cont;
+	}
+	
+	public String toString() {
+		String tostring = "";
+		for (Function func : array) {
+			tostring += func.toString();
+		}
+		return tostring;
 	}
 
 }

@@ -27,8 +27,8 @@ public class TimedPassword extends Password {
 	@Override
 	public boolean setWord(String oldpass, String newpass) {
 		if (super.setWord(oldpass, newpass)) {
-				reset();
-				return true;
+			reset();
+			return true;
 		} else {
 			return false;
 		}
