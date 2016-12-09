@@ -18,7 +18,8 @@ public class DoublyLinkedList<Element> {
     //@ ensures this.size == \old(size) + 1;
     //@ ensures this.getNode(index).equals(element);
     public void add(int index, Element element) {
-        // TODO: implement, see exercise P-4.17
+        Node p = head;
+        
     }
 
     //@ requires 0 <= index && index < this.size;

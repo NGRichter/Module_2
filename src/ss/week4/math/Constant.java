@@ -21,9 +21,7 @@ public class Constant implements Integrandable {
 	
 	@Override
 	public String toString() {
-		String s = "";
-		s += this.d;
-		return s;
+		return "" + d;
 	}
 
 	@Override

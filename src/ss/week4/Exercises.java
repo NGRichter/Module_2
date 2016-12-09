@@ -13,8 +13,7 @@ public class Exercises {
 
     public static void reverseArray(int[] ints) {
         for (int i = 0; i < (ints.length / 2); i++) {
-        	int o = 0;
-        	o = ints[i];
+        	int o = ints[i];
         	ints[i] = ints[ints.length - 1 - i];
         	ints[ints.length - 1 - i] = o;
         }

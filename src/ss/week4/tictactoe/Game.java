@@ -118,7 +118,9 @@ public class Game {
      * the changed game situation is printed.
      */
     private void play() {
-        // TODO: implement, see P-4.20
+    	Game(new Player("Nick", Mark.OO), new Player("Julian", Mark.XX));
+        Player nick = new Player("Nick", Mark.OO);
+        Player julian = new Player("Julian", Mark.XX);
     }
 
     /**

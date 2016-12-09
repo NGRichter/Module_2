@@ -2,13 +2,16 @@ package ss.week4;
 
 import java.util.*;
 
-public class MergeSort {
+public class MergeSort<E> {
 	
-	private List<E> elists = new ArrayList<E>();
+	private ArrayList<E> elists = new ArrayList<E>();
+	private List<E> temp = new ArrayList<E>();
 	
-    public <E extends Comparable<E>> void mergesort(List<E> list) {
+    public void mergesort(List<E> list) {
     	int length = list.size();
     	List<E> elist = new ArrayList<E>(list);
+    	elists = (ArrayList<E>) elist;
+    	elists.add(list.get(0));
     	merge(0, list.size() - 1);
     
     }
