@@ -21,7 +21,7 @@ public class Exponent implements Integrandable {
 
 	@Override
 	public Function integrand() {
-		return new LinearProduct(new Exponent(e + 1), new Constant(1 / (e + 1)));
+		return new LinearProduct(new Exponent(e + 1), new Constant((double) 1 / (e + 1)));
 	}
 	
 	public String toString() {

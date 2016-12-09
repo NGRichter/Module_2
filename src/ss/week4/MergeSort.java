@@ -24,7 +24,7 @@ public class MergeSort {
     
     private void mergeall(int low, int mid, int high) {
     	for (int i = low; i <= high; i++) {
-    		temp.add(i, elist.get(i)); 
+    		temp.add(i, elists.get(i)); 
     	}
     }
     

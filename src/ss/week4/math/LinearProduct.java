@@ -12,7 +12,7 @@ public class LinearProduct extends Product implements Integrandable {
 	}
 	
 	public Function derivative() {
-		return new LinearProduct(new Product(a.derivative(), b), new Constant(0));
+		return new Product(a.derivative(), b);
 	}
 
 	@Override
