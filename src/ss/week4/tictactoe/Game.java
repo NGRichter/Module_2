@@ -81,10 +81,10 @@ public class Game {
      * Prints a question which can be answered by yes (true) or no (false).
      * After prompting the question on standard out, this method reads a String
      * from standard in and compares it to the parameters for yes and no. If the
-     * user inputs a different value, the prompt is repeated and te method reads
+     * user inputs a different value, the prompt is repeated and the method reads
      * input again.
      * 
-     * @parom prompt the question to print
+     * @param prompt the question to print
      * @param yes
      *            the String corresponding to a yes answer
      * @param no
@@ -118,9 +118,17 @@ public class Game {
      * the changed game situation is printed.
      */
     private void play() {
-    	Game(new Player("Nick", Mark.OO), new Player("Julian", Mark.XX));
-        Player nick = new Player("Nick", Mark.OO);
-        Player julian = new Player("Julian", Mark.XX);
+    	update();
+    	while (!board.gameOver()) {
+    		board.setField(players[current].determineMove(board), players[current].getMark());
+    		update();	
+    		if (current == 0) {
+    			current = 1;
+    		} else {
+    			current = 0;
+    		}
+    	}
+    	printResult();
     }
 
     /**
@@ -142,7 +150,7 @@ public class Game {
         if (board.hasWinner()) {
             Player winner = board.isWinner(players[0].getMark()) ? players[0]
                     : players[1];
-            System.out.println("Speler " + winner.getName() + " ("
+            System.out.println("Player " + winner.getName() + " ("
                     + winner.getMark().toString() + ") has won!");
         } else {
             System.out.println("Draw. There is no winner!");

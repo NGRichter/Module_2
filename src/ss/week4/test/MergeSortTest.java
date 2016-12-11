@@ -11,6 +11,9 @@ import java.util.List;
 import static org.junit.Assert.assertEquals;
 
 public class MergeSortTest {
+	
+	MergeSort MergeSort = new MergeSort();
+	
     @Test
     public void testMergesortEmptyList() {
         List<Integer> sequence = new ArrayList<>(Collections.emptyList());
@@ -45,5 +48,16 @@ public class MergeSortTest {
         sequence = new ArrayList<>(Arrays.asList(3, 2, 1, 6, 5, 4));
         MergeSort.mergesort(sequence);
         assertEquals(sequence, Arrays.asList(1, 2, 3, 4, 5, 6));
+    }
+    
+    @Test
+    public void testMergesortUnsortedCharList() {
+        List<Character> sequence = new ArrayList<>(Arrays.asList('a', 'd', 'c', 'Q', 'G'));
+        MergeSort.mergesort(sequence);
+        assertEquals(sequence, Arrays.asList('G', 'Q', 'a', 'c', 'd'));
+
+        sequence = new ArrayList<>(Arrays.asList('Q', 'g', 'E', 'e', 'd', 'D'));
+        MergeSort.mergesort(sequence);
+        assertEquals(sequence, Arrays.asList('D', 'E', 'Q', 'd', 'e', 'g'));
     }
 }
