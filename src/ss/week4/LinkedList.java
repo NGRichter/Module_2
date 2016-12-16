@@ -37,17 +37,17 @@ public class LinkedList<Element> {
     }
 
     public Node findBefore(Element element) {
-    	int o = 0;
+    	int index = -1;
         for (int i = 0; i < size; i++) {
         	if (element == get(i)) {
-        		o = i;
-        		i = size;
+        		index = i;
+        		break;
         	}
         }
-        if (o == 0) {
+        if (index == -1) {
         	return null;
         }
-        return getNode(o - 1);
+        return getNode(index - 1);
     }
 
     //@ requires 0 <= index && index < this.size();
