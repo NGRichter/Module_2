@@ -1,4 +1,4 @@
-package ss.week5;
+package ss.week5.tictactoe;
 
 import java.util.Scanner;
 
@@ -71,11 +71,11 @@ public class HumanPlayer extends Player {
         do {
             System.out.print(prompt);
             try (Scanner scannerLine = new Scanner(line.nextLine());) {
-                if (scannerLine.hasNextInt()) {
-                    intRead = true;
-                    value = scannerLine.nextInt();
-                }
-            }
+            	if (scannerLine.hasNextInt()) {
+            		intRead = true;
+            		value = scannerLine.nextInt();
+            	}
+           	}
         } while (!intRead);
         return value;
     }
