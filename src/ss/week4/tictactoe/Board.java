@@ -59,7 +59,7 @@ public class Board {
     //@ requires 0 <= col & col < DIM;
     /*@pure*/
     public int index(int row, int col) {
-        return row * 3 + col;
+        return row * DIM + col;
     }
 
     /**

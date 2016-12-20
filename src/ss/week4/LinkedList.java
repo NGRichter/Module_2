@@ -41,7 +41,7 @@ public class LinkedList<Element> {
         for (int i = 0; i < size; i++) {
         	if (element == get(i)) {
         		o = i;
-        		i = size;
+        		break;
         	}
         }
         if (o == 0) {
