@@ -40,7 +40,11 @@ public class LinkedList<Element> {
     	int index = -1;
         for (int i = 0; i < size; i++) {
         	if (element == get(i)) {
+<<<<<<< HEAD
+        		o = i;
+=======
         		index = i;
+>>>>>>> branch 'master' of https://github.com/NGRichter/Module_2.git
         		break;
         	}
         }
