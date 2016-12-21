@@ -1,9 +1,17 @@
 package ss.week6.cards;
 
+import java.io.BufferedReader;
+import java.io.DataInput;
+import java.io.DataOutput;
+import java.io.EOFException;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.ObjectInput;
+import java.io.ObjectOutput;
 import java.io.PrintStream;
 import java.io.PrintWriter;
+import java.io.Serializable;
 
 public class Card {
 	
@@ -199,6 +207,72 @@ public class Card {
 	public void write(PrintWriter writer) {
 		writer.println(this.toString());
 		writer.flush();
+	}
+	
+	public void write(DataOutput out) throws IOException {
+		String[] cardtext = this.toString().split(" ");
+		byte[] card = new byte[2];
+		card[0] = (byte) suitString2Char(cardtext[0]);
+		card[1] = (byte) rankString2Char(cardtext[1]);
+		out.write(card);
+	}
+	
+	public void write(ObjectOutput out) throws IOException {
+		if (this instanceof Serializable) {
+			out.writeObject(this);
+		}
+	}
+	
+	public static Card read(BufferedReader in) throws IOException {
+		String cardtext;
+		while ((cardtext = in.readLine()) != null) {
+			String[] split = cardtext.split(" ");
+			if (isValidSuit(suitString2Char(split[0])) && isValidRank(rankString2Char(split[1]))) {
+				System.out.println(split[0] + " " + split[1]);
+				return new Card(suitString2Char(split[0]), rankString2Char(split[1]));			
+			} else {
+				System.out.println("Wrong" + split[0] + " " + split[1]);
+				return null;
+			}			
+		}
+		return null;
+
+	}
+	
+	public static Card read(DataInput in) throws IOException {
+		//char suit = (char) in.readByte();
+		//char rank = (char) in.readByte();	
+		//if (isValidSuit(suit) && isValidRank(rank)) {
+		//	return new Card(suit, rank);			
+		//} else {
+		//	return null;
+		//}
+		char[] card = in.readLine().toCharArray();
+		System.out.println("Char 1: " + card[0] + "\nChar 2: " + card[1]);
+		if (isValidSuit(card[0]) && isValidRank(card[1])) {
+
+			return new Card(card[0], card[1]);
+		}
+		return null;
+	}
+	
+	public static Card read(ObjectInput in) throws IOException {
+		Object card;
+		try {
+			System.out.println("trying to read");
+			//Still incorrect
+			card = in.readObject();
+			System.out.println(card);
+		} catch (ClassNotFoundException e) {
+			System.out.println("Object not readable");
+			return null;
+		}
+		if (card instanceof Card) {
+			System.out.println(card.toString());
+			return (Card) card;
+		}
+		System.out.println("Object not readable");
+		return null;
 	}
 	
 	// ---- instance variabeles -----------------------------------

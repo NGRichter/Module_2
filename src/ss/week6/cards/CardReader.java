@@ -25,7 +25,7 @@ public class CardReader {
 	private static ObjectInputStream objectIn;
 	private static ObjectOutputStream objectOut;
 
-	private static Card read() throws EOFException {
+	private static Card read() throws IOException {
 		if (reader != null) {
 			return Card.read(reader);
 		} else if (dataIn != null) {
@@ -116,6 +116,7 @@ public class CardReader {
 				Card k = read();
 				if (k == null) {
 					System.err.println("Exception in input");
+					return;
 				} else {
 					write(k);
 				}
