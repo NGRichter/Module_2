@@ -11,7 +11,7 @@ public class MapUtil {
 	
 	//@ensures \result == (\forall K k1,k2; map.containsKey(k1) && map.containsKey(k2) && k1 != k2; map.get(k1) != map.get(k2));
     public static <K, V> boolean isOneOnOne(Map<K, V> map) {
-        Set<K> keys = map.keySet();
+    	Set<K> keys = map.keySet();
         ArrayList<Object> temp = new ArrayList<Object>();
         for (K k : keys) {
         	if (temp.contains(map.get(k))) {
