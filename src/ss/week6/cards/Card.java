@@ -1,7 +1,42 @@
 package ss.week6.cards;
 
-public class Card
-{
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.PrintStream;
+import java.io.PrintWriter;
+
+public class Card {
+	
+	public static void main(String[] args) throws FileNotFoundException {
+		if (args.length == 0) {
+			PrintStream sysout = System.out;	
+			PrintWriter printwriter = new PrintWriter(sysout);			
+			Card first = new Card('C', 'A');
+			Card second = new Card('D', '4');
+			Card third = new Card('S', '7');
+			Card fourth = new Card('H', 'K');
+			first.write(printwriter);
+			second.write(printwriter);
+			third.write(printwriter);
+			fourth.write(printwriter);
+			printwriter.close();
+		} else {
+			File file = new File("C:\\Users\\NickR\\Desktop\\" + args[0]);
+			PrintWriter printwriter = new PrintWriter(file);			
+			Card first = new Card('C', 'A');
+			Card second = new Card('D', '4');
+			Card third = new Card('S', '7');
+			Card fourth = new Card('H', 'K');
+			first.write(printwriter);
+			second.write(printwriter);
+			third.write(printwriter);
+			fourth.write(printwriter);
+			printwriter.close();
+		}
+
+		
+		
+	}
 
 	// ---- constants -----------------------------------
 
@@ -36,7 +71,7 @@ public class Card
 	 */
 	private static String rankChar2String(char rank) {
 		int i;
-		for (i = 0; i < 13 && RANK_CHARACTERS[i] != rank; i++)
+		for (i = 0; i < 13 && RANK_CHARACTERS[i] != rank; i++) {}
 			;
 		return (i == 13) ? null : RANK_STRINGS[i];
 	}
@@ -49,7 +84,7 @@ public class Card
 	 */
 	private static String suitChar2String(char suit) {
 		int i;
-		for (i = 0; i < 4 && SUIT_CHARACTERS[i] != suit; i++)
+		for (i = 0; i < 4 && SUIT_CHARACTERS[i] != suit; i++) {}
 			;
 		return (i == 4) ? null : SUIT_STRINGS[i];
 	}
@@ -159,6 +194,11 @@ public class Card
 			result = r2 == r1 + 1;
 		}
 		return result;
+	}
+	
+	public void write(PrintWriter writer) {
+		writer.println(this.toString());
+		writer.flush();
 	}
 	
 	// ---- instance variabeles -----------------------------------
