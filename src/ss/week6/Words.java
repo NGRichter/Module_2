@@ -6,11 +6,17 @@ public class Words {
 	public static void main(String[] args) {
 		Scanner in = new Scanner(System.in);
 		while (true) {
-			String next = in.next();
-			if (next == "end") {
+			System.out.print("Line (or 'end'): ");
+			int i = 1;
+			String sentence = in.nextLine();
+			String[] words = sentence.split(" ");
+			if (sentence.startsWith("end")) {
 				break;
 			} else {
-				System.out.println(next);
+				for (String string : words) {
+					System.out.println("Word " + i + ": " + string);
+					i++;
+				}
 			}
 		}
 		in.close();
