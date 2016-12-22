@@ -49,7 +49,9 @@ public class Card implements Serializable {
 			//fourth.write(printwriter);
 			System.out.println(read(reader).toString());
 		}
-
+		//Data file is the least expensive, the next is the txt file and last is the object. 
+		//this is because data file just consist of bytes, while txt file also has some encoding. 
+		//Object file just has everything in it
 		
 		
 	}
