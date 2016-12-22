@@ -2,20 +2,26 @@ package ss.week6.cards;
 
 import java.io.BufferedReader;
 import java.io.DataInput;
+import java.io.DataInputStream;
 import java.io.DataOutput;
+import java.io.DataOutputStream;
 import java.io.EOFException;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInput;
+import java.io.ObjectInputStream;
 import java.io.ObjectOutput;
+import java.io.ObjectOutputStream;
 import java.io.PrintStream;
 import java.io.PrintWriter;
 import java.io.Serializable;
 
-public class Card {
+public class Card implements Serializable {
 	
-	public static void main(String[] args) throws FileNotFoundException {
+	public static void main(String[] args) throws IOException {
 		if (args.length == 0) {
 			PrintStream sysout = System.out;	
 			PrintWriter printwriter = new PrintWriter(sysout);			
@@ -29,17 +35,19 @@ public class Card {
 			fourth.write(printwriter);
 			printwriter.close();
 		} else {
-			File file = new File("C:\\Users\\NickR\\Desktop\\" + args[0]);
-			PrintWriter printwriter = new PrintWriter(file);			
+			FileOutputStream file = new FileOutputStream(args[0]);
+			ObjectOutput printwriter = new ObjectOutputStream(file);	
+			FileInputStream filein = new FileInputStream(args[0]);
+			ObjectInput reader = new ObjectInputStream(filein);
 			Card first = new Card('C', 'A');
 			Card second = new Card('D', '4');
 			Card third = new Card('S', '7');
 			Card fourth = new Card('H', 'K');
 			first.write(printwriter);
-			second.write(printwriter);
-			third.write(printwriter);
-			fourth.write(printwriter);
-			printwriter.close();
+			//second.write(printwriter);
+			//third.write(printwriter);
+			//fourth.write(printwriter);
+			System.out.println(read(reader).toString());
 		}
 
 		
@@ -214,13 +222,14 @@ public class Card {
 		byte[] card = new byte[2];
 		card[0] = (byte) suitString2Char(cardtext[0]);
 		card[1] = (byte) rankString2Char(cardtext[1]);
-		out.write(card);
+		out.writeByte(card[0]);
+		out.writeChar('\t');
+		out.writeByte(card[1]);
+		out.writeChar('\n');
 	}
 	
 	public void write(ObjectOutput out) throws IOException {
-		if (this instanceof Serializable) {
-			out.writeObject(this);
-		}
+		out.writeObject(this);
 	}
 	
 	public static Card read(BufferedReader in) throws IOException {
@@ -247,7 +256,11 @@ public class Card {
 		//} else {
 		//	return null;
 		//}
-		char[] card = in.readLine().toCharArray();
+		char[] card = new char[2];
+		card[0] = (char) in.readByte();
+		in.readChar();
+		card[1] = (char) in.readByte();
+		in.readChar();
 		System.out.println("Char 1: " + card[0] + "\nChar 2: " + card[1]);
 		if (isValidSuit(card[0]) && isValidRank(card[1])) {
 
@@ -259,16 +272,12 @@ public class Card {
 	public static Card read(ObjectInput in) throws IOException {
 		Object card;
 		try {
-			System.out.println("trying to read");
-			//Still incorrect
 			card = in.readObject();
-			System.out.println(card);
 		} catch (ClassNotFoundException e) {
 			System.out.println("Object not readable");
 			return null;
 		}
 		if (card instanceof Card) {
-			System.out.println(card.toString());
 			return (Card) card;
 		}
 		System.out.println("Object not readable");

@@ -119,6 +119,7 @@ public class CardReader {
 					return;
 				} else {
 					write(k);
+					System.out.println(k.toString());
 				}
 			} catch (EOFException exc) {
 				doorgaan = false;
