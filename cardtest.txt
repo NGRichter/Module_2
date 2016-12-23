@@ -1,0 +1,4 @@
+Clubs ace
+Diamonds 4
+Spades 7
+Hearts king

@@ -44,11 +44,15 @@ public class Card implements Serializable {
 			Card third = new Card('S', '7');
 			Card fourth = new Card('H', 'K');
 			first.write(printwriter);
-			//second.write(printwriter);
-			//third.write(printwriter);
-			//fourth.write(printwriter);
+			second.write(printwriter);
+			third.write(printwriter);
+			fourth.write(printwriter);
+			System.out.println(read(reader).toString());
+			System.out.println(read(reader).toString());
+			System.out.println(read(reader).toString());
 			System.out.println(read(reader).toString());
 		}
+		//The data is the least costly because it uses less data. The txt is next and the object is the most cost inefficient
 
 		
 		
