@@ -21,14 +21,15 @@ public class DictionaryAttackTest {
     private DictionaryAttack dictionaryAttack;
 
     /** Path to the text file */
-    private static final String PATH = ""; //Your path to the test folder
+    private static final String PATH = "C:\\Users\\NickR\\git\\Module_2\\"; //Your path to the test folder
 
     @Before
     public void setUp() {
         dictionaryAttack = new DictionaryAttack();
         try {
-            dictionaryAttack.readPasswords(PATH + "LeakedPasswords.txt");
+            dictionaryAttack.readPasswords(PATH + "password.txt");
         } catch (IOException e) {
+        	System.out.println("End of line");
             e.printStackTrace();
         }
     }
