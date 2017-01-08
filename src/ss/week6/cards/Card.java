@@ -44,14 +44,22 @@ public class Card implements Serializable {
 			Card third = new Card('S', '7');
 			Card fourth = new Card('H', 'K');
 			first.write(printwriter);
-			//second.write(printwriter);
-			//third.write(printwriter);
-			//fourth.write(printwriter);
+			second.write(printwriter);
+			third.write(printwriter);
+			fourth.write(printwriter);
+			System.out.println(read(reader).toString());
+			System.out.println(read(reader).toString());
+			System.out.println(read(reader).toString());
 			System.out.println(read(reader).toString());
 		}
+<<<<<<< HEAD
+		//The data is the least costly because it uses less data. The txt is next and the object is the most cost inefficient
+
+=======
 		//Data file is the least expensive, the next is the txt file and last is the object. 
 		//this is because data file just consist of bytes, while txt file also has some encoding. 
 		//Object file just has everything in it
+>>>>>>> refs/remotes/origin/master
 		
 		
 	}
