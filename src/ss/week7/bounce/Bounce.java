@@ -19,6 +19,7 @@ public class Bounce extends JFrame {
 	public Bounce() {
 		setTitle("Bounce");
 		ballPanel = new BallPanel();
+		//Thread t = new Thread(ballPanel);
 		getContentPane().add("Center", ballPanel);
 		JPanel controlPanel = new JPanel();
 		start = new JButton("Start");
@@ -31,6 +32,8 @@ public class Bounce extends JFrame {
 		});
 		getContentPane().add("South", controlPanel);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
+		ballPanel.startTimer();
+
 	}
 
 	public static void main(String[] args) {

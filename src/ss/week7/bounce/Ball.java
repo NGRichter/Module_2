@@ -37,6 +37,10 @@ public class Ball {
 			this.dy = other.dy;
 			other.dx = dxTemp;
 			other.dy = dyTemp;
+			this.x += this.dx;
+			this.y += this.dy;
+			other.x += other.dx;
+			other.y += other.dy;
 		}
 	}
 
