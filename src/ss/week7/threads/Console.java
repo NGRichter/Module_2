@@ -6,11 +6,11 @@ import java.io.InputStreamReader;
 import java.io.PrintStream;
 
 /**
- * Class for default input/output
+ * Class for default input/output.
  * @author  Arend Rensink en Theo Ruys.
  */
 public class Console {
-    /** sign for wrong input */
+    /** sign for wrong input. */
     static public final char FOUT = '\u0004';
 
     static private BufferedReader in = new BufferedReader(
@@ -22,7 +22,7 @@ public class Console {
     }
 
     /**
-     * write a text on the default output
+     * write a text on the default output.
      * @param text text to be written
      */
     static public void print(String text) {
@@ -30,7 +30,7 @@ public class Console {
     }
 
     /**
-     * write a text on the default output, ending with a new line
+     * write a text on the default output, ending with a new line.
      * @param text text to be written
      */
     static public void println(String text) {
@@ -59,7 +59,7 @@ public class Console {
     }
 
     /**
-     * Reads an integer from the default input
+     * Reads an integer from the default input.
      * @param  text question text
      * @return entered number
      */
@@ -68,7 +68,7 @@ public class Console {
     }
 
     /**
-     * Reads an integer from the default input
+     * Reads an integer from the default input.
      * With an invalid input the question will be asked again
      * @param text question
      * @param errorMessage error message for wrong input
