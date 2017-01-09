@@ -10,6 +10,11 @@ import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
+//7.2 Every time you click draw it creates a new thread that will draw all the pixels.
+//It does not matter what other threads do it just changes the pixel color of a certain pixel.
+
+//7.3 The program becomes unresponsive, because the only thread there is is busy calculating the pixel colors.
+//After the pixels are calculated you program becomes responsive again for mouse clicks.
 
 /**
  * Drawing the mandelbrot set is a time consuming process.
@@ -19,6 +24,7 @@ import javax.swing.JMenuItem;
  */
 public class MandelSet {
 	public MandelSet() {
+		canvas = new MandelPanel();
 		win = new JFrame("Mandelbrot Set");
 		Container c = win.getContentPane();
 		c.setBackground(Color.white);
@@ -28,7 +34,8 @@ public class MandelSet {
 		JMenuItem draw = new JMenuItem("Draw", 'D');
 		draw.addActionListener(new AbstractAction() {
 			public void actionPerformed(ActionEvent e) {
-				canvas.draw();
+				Thread t = new Thread(canvas);
+				t.start();
 			}
 		});
 		JMenuItem exit = new JMenuItem("Exit", 'E');
@@ -40,7 +47,6 @@ public class MandelSet {
 		menu.add(draw);
 		menu.add(exit);
 		menuBar.add(menu);
-		canvas = new MandelPanel();
 		win.setJMenuBar(menuBar);
 		c.add(canvas, BorderLayout.CENTER);
 		win.setSize(400, 400);
