@@ -22,7 +22,6 @@ public class IntConsumer extends Thread {
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
-
 			val = cell.getValue();
 			System.out.println(getName() + ": " + val + " read");
 		} while (val != -1);

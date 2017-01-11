@@ -13,6 +13,11 @@ public class UnsynchronizedIntCell implements IntCell {
 	public int getValue() {
 		return value;
 	}
+
+	@Override
+	public boolean getUnused() {
+		return false;
+	}
 }
 
 /**************************************************************************

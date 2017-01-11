@@ -72,7 +72,7 @@ public class BruteForce {
 	}
 	public static Map<String, String> start(int length) {
 		bruteMap = new HashMap<String, String>();
-		new BruteForce((char) 32, (char) 126, length).run();
+		new BruteForce((char) 'a', (char) 'z', length).run();
 		return bruteMap;
 	}
 

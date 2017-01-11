@@ -9,9 +9,20 @@ package ss.week7.threads;
  * @author Revised by Rieks op den Akker
  * @version january 2002
  */
-public class ProdCons {
+
+//7.16 Producers can overwrite eachothers written values.
+// Both consumers can read the values while the producers are sleeping, so they print the same.
+// A consumer can even print the same value twice.
+// The same applies to the producer, he can overwrite his own value while no consumer has read it.
+// This can be fixed by using a ReentrantLock with the "fair" option enabled. 
+// This can also be fixed by using the wait() and notify() methods.
+public class ProdCons implements IntCell {
+	
+	private int val;
+	private boolean unUsed;
+	
 	public static void main(String[] args) {
-		IntCell cell = new UnsynchronizedIntCell();
+		IntCell cell = new FinegrainedIntCell();
 		Thread prod1 = new IntProducer(1, cell);
 		Thread prod2 = new IntProducer(2, cell);
 		Thread cons1 = new IntConsumer(1, cell);
@@ -21,6 +32,25 @@ public class ProdCons {
 		prod2.start();
 		cons1.start();
 		cons2.start();
+	}
+
+	@Override
+	public synchronized void setValue(int value) {
+		val = value;
+		unUsed = true;
+		notify();
+		
+	}
+
+	@Override
+	public synchronized int getValue() {
+		unUsed = false;
+		notify();
+		return val;
+	}
+	
+	public synchronized boolean getUnused() {
+		return unUsed;
 	}
 }
 

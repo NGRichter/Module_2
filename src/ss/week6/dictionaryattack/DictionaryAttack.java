@@ -1,8 +1,10 @@
 package ss.week6.dictionaryattack;
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -37,7 +39,7 @@ public class DictionaryAttack {
 		}
 		while (true) {
 			String login = null;
-				login = reader.readLine();
+			login = reader.readLine();
 
 			if (login == null) {
 				break;
@@ -45,7 +47,7 @@ public class DictionaryAttack {
 			String[] user = login.split(": ");
 			passwordMap.put(user[0], user[1]);
 		}
-			reader.close();
+		reader.close();
 
 	}
 
@@ -77,7 +79,7 @@ public class DictionaryAttack {
 	public boolean checkPassword(String user, String password) {
         for (String users : passwordMap.keySet()) {
         	if (users.equals(user)) {
-        		return passwordMap.get(users).equals(password) || passwordMap.get(users).equals(getPasswordHash(password));
+        		return passwordMap.get(users).equals(getPasswordHash(password));
         	}
         }
 		return false;
@@ -91,8 +93,14 @@ public class DictionaryAttack {
 	 */
     public void addToHashDictionary(String filename) {
 		BufferedReader reader = null;
+		BufferedWriter writer = null;
 		try {
 			reader = new BufferedReader(new FileReader(filename));
+			try {
+				writer = new BufferedWriter(new FileWriter("Dictionaryattack.txt"));
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
 		} catch (FileNotFoundException e1) {
 			e1.printStackTrace();
 		}
@@ -111,9 +119,20 @@ public class DictionaryAttack {
 			  	byte[] hash = md.digest(password.getBytes());
 			   	String hexencoding = Hex.encodeHexString(hash);
 			   	hashDictionary.put(password, hexencoding);
+			   	try {
+					writer.write(hexencoding + " " + password);
+					writer.newLine();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
 		   	}
 		} catch (NoSuchAlgorithmException e) {
         		
+		}
+		try {
+			writer.flush();
+		} catch (IOException e) {
+			e.printStackTrace();
 		}
     }
 	/**
@@ -126,7 +145,7 @@ public class DictionaryAttack {
 		passwordMap = new HashMap<String, String>();
 		//addToHashDictionary("rockyou.txt"); //117 out of 136
 		readPasswords("password.txt");
-		hashDictionary = BruteForce.start(4);
+		hashDictionary = BruteForce.start(5);
 		int i = 0;
 		for (String user : passwordMap.keySet()) {
 			for (String word : hashDictionary.keySet()) {

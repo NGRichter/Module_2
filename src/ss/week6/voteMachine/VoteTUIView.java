@@ -18,17 +18,13 @@ public class VoteTUIView implements Observer, VoteView {
 		while (true) {
 			System.out.println("What do you command? ");
 			String[] input = in.nextLine().split(" ");
-			if (input[0].equals("add") && input[1].equals("party")) {
-				if (input.length == 3) {
-					if (voteMachine.getParties().hasParty(input[2])) {
-						showError("Name already exists.");						
-					} else {
-						voteMachine.addParty(input[2]);		
+			if (input.length == 3 && input[0].equals("add") && input[1].equals("party")) {
+				if (voteMachine.getParties().hasParty(input[2])) {
+					showError("Name already exists.");						
+				} else {
+					voteMachine.addParty(input[2]);		
 					}
 				 
-				} else {
-					showError("Name of party is not valid.");
-				}
 			} else if (input[0].equals("vote")) {
 				boolean error = true;
 				for (String party : voteMachine.getParties().getParties()) {
@@ -73,7 +69,7 @@ public class VoteTUIView implements Observer, VoteView {
 	}
 	
 	public void showError(String error) {
-		System.out.println("An error has occured: " + error);
+		System.err.println("An error has occured: " + error);
 	}
 
 	@Override
