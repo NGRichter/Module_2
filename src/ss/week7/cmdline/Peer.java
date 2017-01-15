@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.net.Socket;
+import java.net.SocketException;
 
 /**
  * Peer for a simple client-server application
@@ -19,8 +20,14 @@ public class Peer implements Runnable {
     protected Socket sock;
     protected BufferedReader in;
     protected BufferedWriter out;
+    private volatile boolean running = true;
+    
+    public void terminate() {
+    	running = false;
+    }
 
-
+    
+    
     /*@
        requires (nameArg != null) && (sockArg != null);
      */
@@ -29,8 +36,11 @@ public class Peer implements Runnable {
      * @param   nameArg name of the Peer-proces
      * @param   sockArg Socket of the Peer-proces
      */
-    public Peer(String nameArg, Socket sockArg) throws IOException
-    {
+    public Peer(String nameArg, Socket sockArg) throws IOException {
+    	this.name = nameArg;
+    	this.sock = sockArg;
+    	in = new BufferedReader(new InputStreamReader(sock.getInputStream()));
+    	out = new BufferedWriter(new OutputStreamWriter(sock.getOutputStream()));
     }
 
     /**
@@ -38,6 +48,19 @@ public class Peer implements Runnable {
      * writes the characters to the default output.
      */
     public void run() {
+    	while (running) {
+    		try {
+				String temp = in.readLine();
+				if (temp == null) {
+					shutDown();
+					System.out.println("Your chat partner has disconnected! (output)");
+				} else {
+					System.out.println("\nMessage from " + sock.getInetAddress() + ": " + temp);
+				}
+			} catch (IOException e) {
+				break;
+			}
+    	}
     }
 
 
@@ -47,20 +70,49 @@ public class Peer implements Runnable {
      * On Peer.EXIT the method ends
      */
     public void handleTerminalInput() {
+    	while (running) {
+        	String temp = readString(getName() + ": ");
+        	if (temp.equals("exit")) {
+        		System.out.println("System will shut down");
+        		shutDown();
+        	}
+        	try {
+    			out.write(temp + "\n");
+    	    	out.flush();
+    		} catch (SocketException e) {
+    			System.out.println("Your chat partner disconnected! (input)");
+    			break;
+    		} catch (IOException e) {
+				shutDown();
+			}
+    		
+    	}
+
+    	
     }
 
     /**
      * Closes the connection, the sockets will be terminated
      */
     public void shutDown() {
+    	try {
+			out.close();
+	    	in.close();
+	    	sock.close();
+	    	System.in.close();
+	    	running = false;
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
     }
 
-    /**  returns name of the peer object*/
+    /**  returns name of the peer object. */
     public String getName() {
         return name;
     }
 
-    /** read a line from the default input */
+    /** read a line from the default input. */
     static public String readString(String tekst) {
         System.out.print(tekst);
         String antw = null;

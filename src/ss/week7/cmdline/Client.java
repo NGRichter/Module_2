@@ -59,7 +59,6 @@ public class Client {
             Thread streamInputHandler = new Thread(client);
             streamInputHandler.start();
             client.handleTerminalInput();
-            client.shutDown();
         } catch (IOException e) {
             e.printStackTrace();
         }
